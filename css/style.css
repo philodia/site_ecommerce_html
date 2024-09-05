@@ -1,0 +1,152 @@
+/* style.css */
+
+/* Styles généraux */
+body {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* En-tête */
+.navbar {
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: #007bff !important;
+}
+
+.nav-link {
+    color: #555 !important;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #007bff !important;
+}
+
+/* Jumbotron personnalisé */
+.jumbotron {
+    background-image: url(../img/slide-pub/2.jpg);
+    padding: 4rem 2rem;
+    border-radius: 0.3rem;
+    margin-bottom: 2rem;
+}
+
+.display-4 {
+    font-weight: bold;
+    color: #007bff;
+}
+
+/* Sections */
+section {
+    margin-bottom: 4rem;
+}
+
+h2 {
+    color: #007bff;
+    margin-bottom: 1.5rem;
+}
+
+/* Cartes de catégories */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 1rem;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0,0,0,.1);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-title {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Boutons */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.btn-outline-primary {
+    color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-outline-primary:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Pied de page */
+footer {
+    background-color: #f8f9fa;
+    color: #6c757d;
+    padding: 1rem 0;
+    margin-top: 2rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .jumbotron {
+        padding: 2rem 1rem;
+    }
+
+    .card-img-top {
+        height: 150px;
+    }
+}
+
+/* Animation pour les éléments qui apparaissent */
+.fade-in {
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+}
+
+.fade-in.visible {
+    opacity: 1;
+}
+
+/* Style pour la barre de recherche (si vous en ajoutez une) */
+.search-form {
+    margin-bottom: 1rem;
+}
+
+.search-form .form-control {
+    border-radius: 20px;
+}
+
+/* Style pour les badges de promotion ou de nouveauté */
+.badge-new, .badge-sale {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border-radius: 20px;
+}
+
+.badge-new {
+    background-color: #28a745;
+    color: white;
+}
+
+.badge-sale {
+    background-color: #dc3545;
+    color: white;
+}
