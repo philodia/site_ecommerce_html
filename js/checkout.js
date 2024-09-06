@@ -1,60 +1,47 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const orderSummary = document.getElementById('order-summary');
+    const orderSummary = document.getElementById('orderSummary');
     const subtotalElement = document.getElementById('subtotal');
-    const shippingElement = document.getElementById('shipping');
-    const taxesElement = document.getElementById('taxes');
+    const taxElement = document.getElementById('tax');
     const totalElement = document.getElementById('total');
-    const paymentForm = document.getElementById('payment-form');
+    const checkoutForm = document.getElementById('checkoutForm');
 
-    // Fonction pour charger le résumé de la commande
-    function loadOrderSummary() {
-        // Simuler un appel API pour obtenir les détails de la commande
-        const orderItems = [
-            { name: "Produit 1", quantity: 2, price: 19.99 },
-            { name: "Produit 2", quantity: 1, price: 29.99 },
-        ];
+    // Charger le panier depuis le localStorage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-        let summaryHTML = '';
-        orderItems.forEach(item => {
-            summaryHTML += `
-                <div class="d-flex justify-content-between mb-2">
-                    <span>${item.name} x ${item.quantity}</span>
-                    <span>${(item.price * item.quantity).toFixed(2)}€</span>
-                </div>
+    function displayOrderSummary() {
+        orderSummary.innerHTML = '';
+        let subtotal = 0;
+
+        cart.forEach(item => {
+            const li = document.createElement('li');
+            li.className = 'list-group-item d-flex justify-content-between align-items-center';
+            li.innerHTML = `
+                ${item.name}
+                <span>${item.quantity} x ${item.price.toFixed(2)} €</span>
             `;
+            orderSummary.appendChild(li);
+            subtotal += item.price * item.quantity;
         });
 
-        orderSummary.innerHTML = summaryHTML;
-        updateTotals(orderItems);
+        const tax = subtotal * 0.2;
+        const total = subtotal + tax;
+
+        subtotalElement.textContent = subtotal.toFixed(2) + ' €';
+        taxElement.textContent = tax.toFixed(2) + ' €';
+        totalElement.textContent = total.toFixed(2) + ' €';
     }
 
-    // Fonction pour mettre à jour les totaux
-    function updateTotals(items) {
-        const subtotal = items.reduce((total, item) => total + item.price * item.quantity, 0);
-        const shipping = subtotal > 50 ? 0 : 5.99; // Exemple : livraison gratuite au-dessus de 50€
-        const taxes = subtotal * 0.2; // Exemple : 20% de taxes
-        const total = subtotal + shipping + taxes;
-
-        subtotalElement.textContent = subtotal.toFixed(2) + '€';
-        shippingElement.textContent = shipping.toFixed(2) + '€';
-        taxesElement.textContent = taxes.toFixed(2) + '€';
-        totalElement.textContent = total.toFixed(2) + '€';
-    }
-
-    // Gestionnaire d'événements pour la soumission du formulaire
-    paymentForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-
+    checkoutForm.addEventListener('submit', function(e) {
+        e.preventDefault();
         // Ici, vous ajouteriez la logique pour traiter le paiement
-        // Par exemple, en utilisant une API de paiement comme Stripe
-
-        // Simuler un traitement de paiement
-        console.log('Traitement du paiement...');
-        alert('Paiement traité avec succès ! Redirection vers la page de confirmation...');
+        // Par exemple, un appel à une API de paiement
+        alert('Commande confirmée ! Merci pour votre achat.');
+        // Vider le panier après la commande
+        localStorage.removeItem('cart');
         // Rediriger vers une page de confirmation
         // window.location.href = 'confirmation.html';
     });
 
-    // Charger le résumé de la commande au chargement de la page
-    loadOrderSummary();
+    // Afficher le résumé de la commande au chargement de la page
+    displayOrderSummary();
 });

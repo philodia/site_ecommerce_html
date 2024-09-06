@@ -28,9 +28,10 @@ body {
 
 /* Jumbotron personnalisé */
 .jumbotron {
-    background-image: url(../img/slide-pub/2.jpg);
+    background-image: url(../img/banniere/4.avif);
+    background-size: cover;
     padding: 4rem 2rem;
-    border-radius: 0.3rem;
+    border-radius: 0.6rem;
     margin-bottom: 2rem;
 }
 
